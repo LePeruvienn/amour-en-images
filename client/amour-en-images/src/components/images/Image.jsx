@@ -39,7 +39,7 @@ function Image ({ idImage, nom, date, description, src }) {
 	}
 
 	return (
-		<div className="w-full relative mx-auto h-auto overflow-hidden rounded-lg group">
+    <div className="relative mx-auto h-auto overflow-hidden rounded-lg group shadow-lg hover:shadow-2xl transition-shadow duration-300">
 			{/* Image */}
 			<img
 				src={_src}
@@ -64,7 +64,7 @@ function Image ({ idImage, nom, date, description, src }) {
 				)}
 			</div>
 			{/* Description au centre de l'image (visible uniquement au survol) */}
-			<div className="absolute inset-0 flex justify-center items-center text-white text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+			<div className="text-center absolute inset-0 flex justify-center items-center text-white text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
 				<p>
 					{description}
 				</p>
