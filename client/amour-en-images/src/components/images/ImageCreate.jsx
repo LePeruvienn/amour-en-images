@@ -2,6 +2,9 @@ import React, { useState } from "react";
 
 function ImageCreate () {
 
+	// Constante statut image bien ajout
+	const __STATUS_OK__ = "Ton Image à bien été ajouté !"
+
 	// Mise en place des différentes variables d'états
 	const [name, setName] = useState ("");
 	const [date, setDate] = useState ("");
@@ -38,13 +41,17 @@ function ImageCreate () {
 			
 			setStatus ("Error: " + err);
 			console.error (err);
+
+			return;
 		}
+
+		setStatus (__STATUS_OK__);
 	}
 
 	// Affichage du formulaire
 	return (
 		<div>
-			<div className="flex justify-center">
+			<div className="flex flex-wrap justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
 
 				<input
 					type="text"
@@ -79,8 +86,8 @@ function ImageCreate () {
 				</button>
 
 			</div>
-			<p className="mt-2 text-center text-red-500">
-				{status}
+			<p className={`mt-2 text-center ${status === __STATUS_OK__ ? "text-green-500" : "text-red-500"}`}>
+			  {status}
 			</p>
 		</div>
 	)
