@@ -14,21 +14,15 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Go to client folder
-        run: cd client/amour-en-images
-
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'  # Specify the Node.js version if needed
-
-      - name: Install dependencies
-        uses: bahmutov/npm-install@v1
-        working-directory: client/amour-en-images
+      - name: Go to client folder and install dependencies
+        run: |
+          cd client/amour-en-images
+          npm install
 
       - name: Build project
-        run: npm run build
-        working-directory: client/amour-en-images
+        run: |
+          cd client/amour-en-images
+          npm run build
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v3
