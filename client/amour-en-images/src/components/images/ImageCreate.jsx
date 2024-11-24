@@ -27,7 +27,7 @@ function ImageCreate () {
 		// On essaye de faire la requête à l'API
 		try {
 			// On fait une requête à notre API
-			const response = await fetch ("http://localhost:8000/api/images/create/", {
+			const response = await fetch ("https://leperuvienn.pythonanywhere.com/api/images/create/", {
 				// Ici pas de contexte comme on envoie des données avec différent contexte (fichiers)
 				method: "POST",
 				body: imageData

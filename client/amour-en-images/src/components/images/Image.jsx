@@ -26,7 +26,7 @@ function Image ({ idImage, nom, date, description, src }) {
 		if (window.confirm(`Êtes-vous sûr de vouloir supprimer l'image "${nom}" ?`)) {
 			try {
 				// On fait une requête à notre API
-				const response = await fetch (`http://localhost:8000/api/images/delete/${idImage}/`, {
+				const response = await fetch (`https://leperuvienn.pythonanywhere.com/api/images/delete/${idImage}/`, {
 					method: "DELETE",
 				});
 

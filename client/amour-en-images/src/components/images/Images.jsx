@@ -17,7 +17,7 @@ function Images () {
 
 		try {
 			// On fait une requête à notre API
-			const response = await fetch ("http://localhost:8000/api/images/");
+			const response = await fetch ("https://leperuvienn.pythonanywhere.com/api/images/");
 			// On récupère les données JSON
 			const data = await response.json ();
 			// On met dans la variables images les données récupérées
