@@ -3,51 +3,55 @@ name: Deploy
 on:
   push:
     branches:
-      - main
+      - main  # Trigger deployment on push to the main branch
 
 jobs:
   build:
-    name: Build-frontend
+    name: Build Frontend
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3  # Checkout the repository
 
-      - name: Go to client folder and install dependencies
-        run: |
-          cd client/amour-en-images
-          npm install
+      - name: Go to client folder
+        run: cd client/amour-en-images  # Navigate to the project directory
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Specify the Node.js version
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1  # Install project dependencies
 
       - name: Build project
-        run: |
-          cd client/amour-en-images
-          npm run build
+        run: npm run build  # Build the production-ready application
 
-      - name: Upload production-ready build files
+      - name: Upload production build files
         uses: actions/upload-artifact@v3
         with:
           name: production-files
-          path: client/amour-en-images/dist
+          path: client/amour-en-images/dist  # Path to the build output folder
 
   deploy:
-    name: Deploy
+    name: Deploy to GitHub Pages
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main'  # Only run this job if it's the main branch
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3  # Checkout the repository
 
-      - name: Download artifact
+      - name: Download production files
         uses: actions/download-artifact@v3
         with:
           name: production-files
-          path: client/amour-en-images/dist
+          path: client/amour-en-images/dist  # Download the production files from the build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: client/amour-en-images/dist
+          github_token: ${{ secrets.GH_PERSONAL_TOKEN }}  # Use the Personal Access Token (PAT)
+          publish_dir: client/amour-en-images/dist  # Path to the build output folder
