@@ -9,7 +9,7 @@ function Image ({ idImage, nom, date, description, src }) {
 	const __STATE_EDIT__ = 1;
 
 	// définition de la source de l'image
-	const _src = `http://localhost:8000/${src}`;
+	const _src = `https://leperuvienn.pythonanywhere.com/${src}`;
 
 	// Définition de l'état de l'image (mode édition ou non )
 	const [state, setState] = useState (__STATE_VIEW__);
