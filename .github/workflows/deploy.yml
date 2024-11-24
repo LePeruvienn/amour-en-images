@@ -23,10 +23,14 @@ jobs:
           node-version: '16'  # Specify the Node.js version
 
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1  # Install project dependencies
+        run: |
+          cd client/amour-en-images  # Ensure we're in the correct directory
+          npm install  # Run npm install
 
       - name: Build project
-        run: npm run build  # Build the production-ready application
+        run: |
+          cd client/amour-en-images  # Ensure we're in the correct directory
+          npm run build  # Build the production-ready application
 
       - name: Upload production build files
         uses: actions/upload-artifact@v3
